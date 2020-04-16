@@ -18,7 +18,7 @@ Pkg.add("PyPlot")
 
 and exit. You should now be good to go. 
 
-You can run the harness (modify the number of samples so that its run time is reasonable on a local machine, something like 1000 maybe to test functionality. A JLD save of the 175,000 sample run will be included for you to load and regenerate figures with) using:
+You can run the harness (modify the number of samples so that its run time is reasonable on a local machine, something like 1000 maybe to test functionality. A JLD save of the 175,000 sample run will be available if desired. It will be a large file, thus not available on GitHub) using:
 
 ```bash
 julia -O3 Harness.jl
