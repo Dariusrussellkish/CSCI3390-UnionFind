@@ -206,7 +206,7 @@ These initial data were collected using 10,000 samples per function. As such, da
 
 #### Initial Performance of root!()
 
-![root_initial_benchmark](/Users/darius/csci3390/UnionFind/figures/root_initial_benchmark.png)
+![root_initial_benchmark](figures/root_initial_benchmark.png)
 
 **Figure 1:** In the QuickUnion implementation, large tree traversal times are observed when a large percentage of the data structure is unionized. Weighted QuickUnion, however, was observed to have much tighter bounds and performs approximately constant time. DisjointSet, which implements path compression, was observed to have very tight constant time bounds. 
 
@@ -222,7 +222,7 @@ Sampling noise in the large data structure sizes makes conclusions of scaling di
 
 #### Initial Performance of find!()
 
-![find_initial_benchmark](/Users/darius/csci3390/UnionFind/figures/find_initial_benchmark.png)
+![find_initial_benchmark](figures/find_initial_benchmark.png)
 
 **Figure 2:** QuickFind appears to have some noise at very small n but is otherwise approximately linear in all cases. QuickUnion similarly has poor sampling at large data structure sizes. It appears to scale at least proportional to the size of the data structure with higher percentage-united cases requiring more time on average. Weighted QuickUnion time grows with data structure size, however less than linearly. Higher percentage-united cases take more time to run on average. DisjointSet including path compression appears approximately linear with greater spread across percentage-united cases. 
 
@@ -234,7 +234,7 @@ Sampling noise in the large data structure sizes makes conclusions of scaling di
 
 #### Initial Performance of unite!()
 
-![unite_initial_benchmark](/Users/darius/csci3390/UnionFind/figures/unite_initial_benchmark.png)
+![unite_initial_benchmark](figures/unite_initial_benchmark.png)
 
 **Figure 3:** QuickFind's *unite* performs scaling very close to linearly with respect to the size of the data structure. QuickUnion performs faster than QuickFind, though for large percentage-united cases near linear performance is observed. Weighted QuickUnion performs approximately linearly in these data, with the 90%-united case growing slightly with large data structure sizes. DisjointSet performs approximately linearly across its cases with some sampling noise in the large data structure sizes due to sample sizes. 
 
