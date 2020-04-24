@@ -247,3 +247,23 @@ Sampling noise in the large data structure sizes makes conclusions of scaling di
 #### Conclusion
 
 Despite following best practices for benchmarking, we still observe noise and biases in our sampling that make determining actual average case bounds for Weighted QuickUnion and DisjointSet difficult. Weighted QuickUnion often appears to perform in average constant time rather than somewhere between constant and log(n) time, and DisjointSet has noise that makes conclusively confirming it performs in average constant time from the data impossible. We can, however, conclusively say that *unite* for QuickFind is a slow, Θ(n) operation. And *find* and *unite* for QuickUnion perform clearly much worse than their Weighted QuickUnion and DisjointSet cousins. From a theoretical standpoint, DisjointSet performs better with much tighter bounds for its average case, essentially Θ(1), whereas Weighed QuickUnion still has a worst case of O(log(n)), even if its big Θ does not appear to come close to this. Only larger sampling will confirm this form a purely practical standpoint, however combining theoretical and practical analysis allows us to conclude DisjointSet is the most efficient implementation.
+
+#### Long Benchmark Results
+
+These were performed using 175,000 samples instead of 10,000. This was designed to help get better sampling of the large size data structures. 
+
+![root_long_benchmark](/Users/darius/csci3390/CSCI3390-UnionFind/figures/root_long_benchmark.png)
+
+**Figure 4:** In the QuickUnion implementation, large tree traversal times are observed when a large percentage of the data structure is unionized. Weighted QuickUnion, however, was observed to have much tighter bounds and performs approximately constant time. DisjointSet, which implements path compression, was observed to have tight time bounds but as the data structure size increased, the time increases slightly. 
+
+![find_long_benchmark](/Users/darius/csci3390/CSCI3390-UnionFind/figures/find_long_benchmark.png)
+
+**Figure 5:** QuickFind appears to have some noise at very small n but is otherwise approximately linear in all cases. QuickUnion similarly has poor sampling at large data structure sizes. It appears to scale at least proportional to the size of the data structure with higher percentage-united cases requiring more time on average. Weighted QuickUnion time remains approximately constant with data structure size, though a slight upwards slope is noted. Higher percentage-united cases take more time to run on average. DisjointSet including path compression appears approximately linear until the n=500,000 case, where the time rises in all cases. 
+
+![unite_long_benchmark](/Users/darius/csci3390/CSCI3390-UnionFind/figures/unite_long_benchmark.png)
+
+**Figure 6:** QuickFind's *unite* performs scaling very close to linearly with respect to the size of the data structure. QuickUnion performs faster than QuickFind, though for large percentage-united cases near linear performance is observed. Weighted QuickUnion performs approximately linearly in these data. DisjointSet performs approximately linearly across its cases though an upwards trend for n=500,000 is noted.
+
+**Conclusions** 
+
+Similar to the smaller case, the naive implementations performed poorly, nearly O(n). Surprisingly, Weighted QuickUnion performs extremely well for the data structure sizes tested. It has near linear performance which was unexpected, further suggesting its average case is constant and not Θ(log(n)) like its O(log(n)) worst case. In fact, from the data, the time it takes to perform path compression on large structure sizes is a constant multiplier worse than the average Weighted QuickUnion. This constant multiplier appears small and would not outweigh the benefit of guaranteed Θ(1) performance in DisjointSet versus relying on average case performance in Weighted QuickUnion. 
